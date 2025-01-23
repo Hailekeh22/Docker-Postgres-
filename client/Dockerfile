@@ -2,12 +2,12 @@ FROM node:20-slim
 
 WORKDIR /app
 
-COPY Package*.json ./
+COPY package*.json ./
 
-RUN npm i
+RUN npm install
 
 COPY . .
 
-EXPOSE 3000
+EXPOSE 5173
 
 CMD ["npm", "run", "dev"]
