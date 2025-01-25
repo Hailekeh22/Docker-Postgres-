@@ -18,7 +18,7 @@ const RegistrationForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('https://your-backend-url.com/register', {
+      const response = await fetch('http://localhost:4545/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
