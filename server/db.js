@@ -1,11 +1,13 @@
-import { Pool } from "pg";
+import pg from 'pg';
+const { Pool } = pg;
 
 export const pool = new Pool({
     user: process.env.DB_USER,
     host: process.env.DB_HOST,
     database: process.env.DB_NAME,
     password: process.env.DB_PASSWORD,
-})
+    port: parseInt(process.env.DB_PORT || '5432'), 
+});
 
 const createTable = async () => {
     const queryText = `CREATE TABLE IF NOT EXISTS users (
@@ -19,9 +21,10 @@ const createTable = async () => {
 
     try {
         await pool.query(queryText);
+        console.log('Table "users" created or already exists.');
     } catch (err) {
-        console.error("Error happend while creating the table");
+        console.error("Error happened while creating the table:", err);
     }
-}
+};
 
 createTable();
